@@ -1,0 +1,85 @@
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;title&gt;Customized Workout Chatbot&lt;/title&gt;
+&lt;style&gt;
+body {
+font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+background-color: #f4f4f4;
+}
+.container {
+width: 80%;
+margin: auto;
+padding: 20px;
+All of these factors—lack of personalization, motivation, guidance, and accessibility—contribute to poor
+adherence to fitness routines. People begin with good intentions but often struggle to maintain consistency,
+which is essential for long-term fitness success. When workouts are not tailored to individual needs, it is easy
+
+to become disengaged, and without proper guidance or motivation, fitness becomes less of a priority in the
+face of daily life challenges.
+}
+h1, h2, h3 {
+color: #333;
+}
+form {
+margin-bottom: 20px;
+}
+label {
+display: block;
+margin: 10px 0 5px;
+}
+input, select, button {
+width: 100%;
+padding: 10px;
+margin-bottom: 10px;
+border: 1px solid #ccc;
+border-radius: 5px;
+}
+button {
+background-color: #28a745;
+color: white;
+border: none;
+cursor: pointer;
+}
+button:hover {
+background-color: #218838;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;container&quot;&gt;
+&lt;h1&gt;Welcome to the Customized Workout Chatbot!&lt;/h1&gt;
+&lt;form method=&quot;POST&quot;&gt;
+&lt;label for=&quot;name&quot;&gt;Name:&lt;/label&gt;
+&lt;input type=&quot;text&quot; id=&quot;name&quot; name=&quot;name&quot; required&gt;
+&lt;label for=&quot;fitness_goal&quot;&gt;Fitness Goal:&lt;/label&gt;
+&lt;select id=&quot;fitness_goal&quot; name=&quot;fitness_goal&quot; required&gt;
+&lt;option value=&quot;weight_loss&quot;&gt;Weight Loss&lt;/option&gt;
+&lt;option value=&quot;muscle_gain&quot;&gt;Muscle Gain&lt;/option&gt;
+&lt;option value=&quot;maintain&quot;&gt;Maintain Weight&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;button type=&quot;submit&quot;&gt;Get My Plan&lt;/button&gt;
+&lt;/form&gt;
+{% if name %}
+&lt;h2&gt;Hello, {{ name }}!&lt;/h2&gt;
+&lt;h3&gt;Your 7-Day Workout Plan:&lt;/h3&gt;
+&lt;ul&gt;
+{% for workout in workout_plan %}
+&lt;li&gt;{{ workout }}&lt;/li&gt;
+{% endfor %}
+&lt;/ul&gt;
+&lt;h3&gt;Your 7-Day Food Plan:&lt;/h3&gt;
+&lt;ul&gt;
+{% for food in food_plan %}
+&lt;li&gt;{{ food }}&lt;/li&gt;
+{% endfor %}
+&lt;/ul&gt;
+{% endif %}
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
