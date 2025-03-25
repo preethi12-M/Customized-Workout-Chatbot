@@ -1,0 +1,67 @@
+from flask import Flask, render_template, request
+app = Flask(__name__)
+# Sample workout and food plans
+workout_plans = {
+&quot;weight_loss&quot;: [
+&quot;30 min cardio (running or cycling)&quot;,
+&quot;Strength training: full body&quot;,
+&quot;HIIT workout&quot;,
+&quot;Yoga or stretching&quot;,
+&quot;30 min cardio (swimming)&quot;,
+&quot;Circuit training&quot;,
+&quot;Rest day&quot;
+],
+&quot;muscle_gain&quot;: [
+&quot;Upper body strength training&quot;,
+&quot;Lower body strength training&quot;,
+&quot;Rest day&quot;,
+&quot;Push-pull workout&quot;,
+&quot;Leg day&quot;,
+&quot;Full body strength training&quot;,
+&quot;Active recovery (light cardio)&quot;
+],
+&quot;maintain&quot;: [
+&quot;Cardio and light strength training&quot;,
+&quot;Yoga or Pilates&quot;,
+&quot;HIIT workout&quot;,
+&quot;Strength training: full body&quot;,
+&quot;Cardio (walking or cycling)&quot;,
+&quot;Rest day&quot;,
+&quot;Flexibility training&quot;
+]
+}
+food_plans = {
+&quot;weight_loss&quot;: [
+&quot;Breakfast: Oatmeal with berries&quot;,
+&quot;Lunch: Grilled chicken salad&quot;,
+&quot;Dinner: Baked salmon with veggies&quot;,
+&quot;Snack: Greek yogurt&quot;,
+&quot;Repeat with variations&quot;
+],
+&quot;muscle_gain&quot;: [
+&quot;Breakfast: Protein smoothie&quot;,
+&quot;Lunch: Quinoa with chicken&quot;,
+&quot;Dinner: Beef stir-fry with rice&quot;,
+
+&quot;Snack: Nuts and fruit&quot;,
+&quot;Repeat with variations&quot;
+],
+&quot;maintain&quot;: [
+&quot;Breakfast: Eggs and toast&quot;,
+&quot;Lunch: Turkey sandwich&quot;,
+&quot;Dinner: Grilled veggies and fish&quot;,
+&quot;Snack: Hummus with veggies&quot;,
+&quot;Repeat with variations&quot;
+]
+}
+@app.route(&#39;/&#39;, methods=[&#39;GET&#39;, &#39;POST&#39;])
+def index():
+if request.method == &#39;POST&#39;:
+name = request.form[&#39;name&#39;]
+fitness_goal = request.form[&#39;fitness_goal&#39;]
+workout_plan = workout_plans.get(fitness_goal, [])
+food_plan = food_plans.get(fitness_goal, [])
+return render_template(&#39;index.html&#39;, name=name, workout_plan=workout_plan, food_plan=food_plan)
+return render_template(&#39;index.html&#39;)
+if __name__ == &#39;__main__&#39;:
+app.run(debug=True)
